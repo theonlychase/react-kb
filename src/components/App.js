@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import AppTest from './AppTest';
-import logo from '../assets/logo.svg';
+import Header from './Header';
+import CompanyDirectory from './CompanyDirectory';
+import HowWeDoStuff from './HowWeDoStuff';
+import Training from './Training';
+import Categories from './Categories';
+import NoMatch from './NoMatch';
+import { Switch, Route }  from "react-router-dom";
+import Home from './Home';
 import '../assets/css/App.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      categories: {}
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-          <AppTest/>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Header />
+      <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/company-directory' component={CompanyDirectory} />
+          <Route exact path='/how-we-do-stuff' component={HowWeDoStuff} />
+          <Route exact path='/training' component={Training} />
+          <Route exact path='/categories' component={Categories} />
+          <Route component={NoMatch}/>
+      </Switch>
       </div>
     );
   }
